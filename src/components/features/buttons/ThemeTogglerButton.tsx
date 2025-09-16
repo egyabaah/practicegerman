@@ -8,8 +8,28 @@ export function ThemeToggleButton() {
 
     // On mount, check current theme
     useEffect(() => {
-        const darkMode = document.documentElement.classList.contains("dark");
-        setIsDark(darkMode);
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme) {
+            if (storedTheme === "dark") {
+                document.documentElement.classList.add("dark");
+                setIsDark(true);
+            } else {
+                document.documentElement.classList.remove("dark");
+                setIsDark(false);
+            }
+        } else {
+            // If localStorage is empty, fallback to system preference
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            if (prefersDark) {
+                document.documentElement.classList.add("dark");
+                localStorage.setItem("theme", "dark");
+                setIsDark(true);
+            } else {
+                document.documentElement.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+                setIsDark(false);
+            }
+        }
     }, []);
 
     const toggleTheme = () => {
