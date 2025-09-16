@@ -35,7 +35,7 @@ export default function Home() {
                         </div>
 
                         {/* Right Column / Second Row */} 
-                        <div className="bg-background-brand text-center flex justify-center items-center w-full min-h-screen lg:h-full rounded-xl">
+                        <div className="bg-background-brand text-center overflow-hidden flex justify-center items-center w-full min-h-screen lg:h-full rounded-xl">
                             <div className="relative w-full h-full overflow-hidden shadow animate-wiggle lg:rounded-xl">
                 <Image
                                     src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1600&auto=format&fit=crop"
