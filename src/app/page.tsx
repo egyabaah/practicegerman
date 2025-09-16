@@ -1,104 +1,125 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { BookOpen, Brain, Trophy, Users } from "lucide-react";
+import { FeatureItem } from "@/components/features/FeatureItem";
 import Image from "next/image";
+import { FeatureCard } from "@/components/features/FeatureCard";
 
 export default function Home() {
     return (
-        <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-            <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
-                    priority
-                />
-                <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-                    <li className="mb-2 tracking-[-.01em]">
-                        Get started by editing{" "}
-                        <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-                            src/app/page.tsx
-                        </code>
-                        .
-                    </li>
-                    <li className="tracking-[-.01em]">
-                        Save and see your changes instantly.
-                    </li>
-                </ol>
+        <div id="home-container">
+            <section id="hero">
+                <div id="grid-container" className="flex items-center justify-center lg:p-5 mb-12">
+                {/* Main Grid - 2 columns on large screens, 2 rows on small screens*/}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 lg:h-dvh">
+                        {/* Left Column / First Row */}
+                        <div className="text-center flex justify-center items-center w-full min-h-screen lg:h-full">
+                            <div className="p-5 md:p-0">
+                                <h1 className="text-4xl text-main-text font-bold tracking-tight sm:text-6xl mb-4">
+                                    Master German with{" "}
+                                    <span className="text-primary">PracticeGerman</span>
+                                </h1>
+                                <p className="text-xl text-main-text max-w-2xl mx-auto mb-8">
+                                    Learn German vocabulary, grammar, and conversation skills through interactive exercises and personalized learning paths.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <Button size="lg" className="text-lg px-8 py-6">
+                                        Start Learning
+                                    </Button>
+                                    <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                                        View Lessons
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
 
-                <div className="flex gap-4 items-center flex-col sm:flex-row">
-                    <a
-                        className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-                        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            className="dark:invert"
-                            src="/vercel.svg"
-                            alt="Vercel logomark"
-                            width={20}
-                            height={20}
-                        />
-                        Deploy now
-                    </a>
-                    <a
-                        className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-                        href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Read our docs
-                    </a>
+                        {/* Right Column / Second Row */} 
+                        <div className="bg-background-brand text-center flex justify-center items-center w-full min-h-screen lg:h-full rounded-xl">
+                            <div className="relative w-full h-full overflow-hidden shadow animate-wiggle lg:rounded-xl">
+                <Image
+                                    src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1600&auto=format&fit=crop"
+                                    alt="Learn German with interactive lessons"
+                                    fill
+                    priority
+                                    className="object-cover transition-transform duration-700 ease-out hover:scale-105"
+                                    sizes="(min-width: 1000px) 50vw, 100vw"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </main>
-            <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/file.svg"
-                        alt="File icon"
-                        width={16}
-                        height={16}
-                    />
-                    Learn
-                </a>
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/window.svg"
-                        alt="Window icon"
-                        width={16}
-                        height={16}
-                    />
-                    Examples
-                </a>
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/globe.svg"
-                        alt="Globe icon"
-                        width={16}
-                        height={16}
-                    />
-                    Go to nextjs.org →
-                </a>
-                <h1>Home</h1>
-            </footer>
+            </section>
+
+            {/* 1x2 grid features card */}
+            <section id="features-cards-grid">
+                {/* Small Grid - 2 columns on large screens, 2 rows on small screens */}
+                <div className="grid mt-20 grid-cols-1 p-5 lg:grid-cols-2 gap-8 mb-12">
+                    {/* Left Column / First Row */}
+                    <div className="space-y-8">
+                        <FeatureCard
+                            icon={BookOpen}
+                            title="Vocabulary Builder"
+                            description="Expand your German vocabulary with our comprehensive word lists and flashcards"
+                            ctaText="Start Learning"
+                        >
+                            <div className="flex items-center gap-3">
+                                <span className="text-sm text-muted-foreground">Basic Words</span>
+                                <div className="flex-1 min-w-0 bg-secondary rounded-full h-2">
+                                    <div className="bg-primary h-2 rounded-full w-0"></div>
+                                </div>
+                                <span className="text-sm font-medium">0/500</span>
+                            </div>
+                        </FeatureCard>
+                    </div>
+
+                    {/* Right Column / Second Row */}
+                    <div className="space-y-8">
+                        <FeatureCard
+                            icon={Brain}
+                            title="Grammar Practice"
+                            description="Master German grammar with interactive exercises and detailed explanations"
+                            ctaText="Practice Now"
+                        >
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="text-center p-4 border rounded-lg">
+                                    <div className="text-2xl font-bold text-primary">12</div>
+                                    <div className="text-sm text-muted-foreground">Topics</div>
+                                </div>
+                                <div className="text-center p-4 border rounded-lg">
+                                    <div className="text-2xl font-bold text-primary">48</div>
+                                    <div className="text-sm text-muted-foreground">Exercises</div>
+                                </div>
+                            </div>
+                        </FeatureCard>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* 1x3 grid Additional Features Section */}
+            <section id="feature-item-grid">
+                <div className="text-center items-center justify-center bg-background-brand py-12">
+                    <h2 className="text-3xl font-bold mb-4">Why Choose <span className="text-primary">PracticeGerman</span>?</h2>
+                    <div className="grid items-center justify-center  grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                        <FeatureItem
+                            icon={BookOpen}
+                            title="Comprehensive Learning"
+                            description="Cover all aspects of German language learning from basics to advanced topics."
+                        />
+                        <FeatureItem
+                            icon={Brain}
+                            title="Adaptive Learning"
+                            description="Our AI-powered system adapts to your learning pace and style."
+                        />
+                        <FeatureItem
+                            icon={Trophy}
+                            title="Gamified Experience"
+                            description="Stay motivated with achievements, streaks, and progress tracking."
+                        />
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }
