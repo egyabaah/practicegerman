@@ -5,6 +5,7 @@ import { BookOpen, Brain, Trophy, Users } from "lucide-react";
 import { FeatureItem } from "@/components/features/FeatureItem";
 import Image from "next/image";
 import { FeatureCard } from "@/components/features/FeatureCard";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -24,12 +25,16 @@ export default function Home() {
                                     Learn German vocabulary, grammar, and conversation skills through interactive exercises and personalized learning paths.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <Button size="lg" className="text-lg px-8 py-6">
-                                        Start Learning
-                                    </Button>
-                                    <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                                        View Lessons
-                                    </Button>
+                                    <Link href="/practice">
+                                        <Button size="lg" className="text-lg px-8 py-6">
+                                            Start Learning
+                                        </Button>
+                                    </Link>
+                                    <Link href="/practice">
+                                        <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+                                            View Lessons
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
