@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { BookOpen, Brain, Trophy, Users } from "lucide-react";
 import { FeatureItem } from "@/components/features/FeatureItem";
