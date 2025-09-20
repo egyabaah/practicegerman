@@ -23,16 +23,16 @@ export default function Home() {
                                     Learn German vocabulary, grammar, and conversation skills through interactive exercises and personalized learning paths.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <Link href="/practice">
-                                        <Button size="lg" className="text-lg px-8 py-6">
-                                            Start Learning
-                                        </Button>
-                                    </Link>
-                                    <Link href="/practice">
-                                        <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                                            View Lessons
-                                        </Button>
-                                    </Link>
+                                    <Button asChild size="lg" className="text-lg px-8 py-6">
+                                        <Link href="/practice">
+                                                Start Learning
+                                        </Link>
+                                    </Button>
+                                    <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6">
+                                        <Link href="/practice">
+                                                View Lessons
+                                        </Link>
+                                    </Button>
                                 </div>
                             </div>
                         </div>
