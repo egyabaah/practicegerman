@@ -33,13 +33,13 @@ export function Footer() {
           </div>
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="sm" asChild>
-              <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/egyabaah/practicegerman" target="_blank" rel="noopener noreferrer">
                 GitHub
               </Link>
             </Button>
             <Button variant="ghost" size="sm" asChild>
-              <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                Twitter
+              <Link href="https://www.linkedin.com/in/egyabaah/" target="_blank" rel="noopener noreferrer">
+                LinkedIn
               </Link>
             </Button>
           </div>
