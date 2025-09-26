@@ -1,8 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## PracticeGerman
 
-## Getting Started
+PracticeGerman is a web app that helps you improve your German language skills.
 
-First, run the development server:
+Unlike other language apps with fixed course content, we believe language learning should have no limits. That’s why we use state-of-the-art AI models to teach you German at  your own level and pace.
+
+We noticed that many learners finish structured courses but still struggle to communicate outside the textbook. **PracticeGerman** is built to complement your course and focus on what matters most:  *practice* .
+
+💡 Inspired by a [YouTube video](https://www.youtube.com/watch?v=Mg9sF6JC5lk), we recommend using the app to  **describe your daily routine in German every evening** . Just write as much as you can, even if you’re unsure. The app will give you corrections, feedback, and native German alternatives.
+
+👉 Try the web app [here](https://practicegerman.vercel.app/)
+
+## Tech Stack
+
+* **Next.js 15.5.3**
+* **Tailwind CSS**
+* **shadcn/ui + Radix UI**
+* **OpenAI API**
+* **Vercel** – hosting and deployment
+* **PostgreSQL (planned)** – database for storing resources and user progress
+* **Supabase (planned)** – backend and authentication
+
+## Running the app locally
+
+1. Install dependencies using:
+   ```
+   npm install
+   ```
+2. Create .env.local
+3. Get an API Key from openai
+4. Add your API Key as in the environment variable:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+5. Run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +44,19 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Implemented
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* [X] Homepage
+* [X] Sentence practice
+* [X] Backend supports multiple languages and can teach in multiple languages
+* [X] Feedback tuned for A1 users
 
-## Learn More
+## TODO
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* [ ] Extend UI to support multiple languages and dynamic language levels
+* [ ] Add unimplemented pages such as: about, contact, privacy, terms
+* [ ] Replace hardcoded strings with i18n
+* [ ] Add Authentication
+* [ ] Connect database (probably PostgreSQL from Supabase)
+* [ ] Add video lessons and resources
