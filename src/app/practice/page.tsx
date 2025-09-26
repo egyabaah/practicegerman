@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { PracticeInputForm } from "@/components/features/practice/PracticeInputForm";
 import { FeedbackCard } from "@/components/features/practice/FeedbackCard";
+import { TPracticeFeedbackResult, TPracticeResponse } from "@/types/types";
 
 
 export default function PracticePage() {
@@ -13,7 +14,8 @@ export default function PracticePage() {
     const [nativeSentence, setNativeSentence] = useState("");
     const [loading, setLoading] = useState(false);
     const [targetSentenceError, setTargetSentenceError] = useState<string | null>(null);
-    const [result, setResult] = useState<string | null>(null);
+    const [feedback, setFeedback] = useState<TPracticeResponse | string | null>(null);
+
     // Form submission handler
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -24,18 +26,46 @@ export default function PracticePage() {
         }
         setTargetSentenceError(null);
         setLoading(true);
-        setResult(null);
-    
-        // TODO: Replace with API call
-        setTimeout(() => {
-            setResult(`
-                Corrected Sentence: Ich gehe morgen zur Schule. \n
-                German Native would say: Morgen gehe ich zur Schule. \n
-                Video Resource: Easy German – Cases (YouTube). \n
-                Explanation: The correct form of the verb 'gehen' is 'gehe' for 1st person singular.
-            `);
+        setFeedback(null);
+        try {
+
+            // Call api
+            const response = await fetch("/api/practice/v1/generatePracticeFeedback", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    targetSentence: targetSentence,
+                    nativeSentence: nativeSentence,
+                    // TODO: Replace with useState
+                    targetLanguage: "Deutsch",
+                    userLanguageLevel: "A1",
+                    userNativeLanguage: "English",
+                }),
+            });
+            // console.log(response)
+
+            // Parse api response
+            const parsedResponse: TPracticeFeedbackResult = await response.json();
+            const {data: apiResponse, error: apiError} = parsedResponse;
+
+            // Handle error returned by api
+            if (apiError) {
+                setFeedback(apiError);
+                setLoading(false)
+                return;
+            }
+            // Handle api sucess response
+            setFeedback(apiResponse);
             setLoading(false);
-        }, 200)
+            return;
+
+        } catch (error: unknown) {
+            // Handle non-api related error
+            console.error(error);
+            setFeedback("An error happened while processing your request. Please try again.");
+            setLoading(false);
+        }
+
     }
     
     // const handleReset = () => {
@@ -45,6 +75,8 @@ export default function PracticePage() {
     // }
     
     const handleTargetSentenceChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        // Get rid of any error text displayed in FeedbackCard
+        setFeedback(null);
         setTargetSentence(e.target.value);
     }
     const handleNativeSentenceChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -76,9 +108,9 @@ export default function PracticePage() {
                         <Separator className="block mb-0 lg:hidden " orientation="horizontal" />
                         {/* Vertical for large screens */}
                         <Separator className="hidden lg:block mr-6 h-full" orientation="vertical" />
-                        <div className="flex flex-col py-6">
+                        <div className="flex flex-col py-6 w-full">
                             <label className="font-medium mb-2">Feedback</label>
-                            <FeedbackCard result={result} />
+                            <FeedbackCard feedback={feedback} />
                         </div>
                     </div>
                 </div>
