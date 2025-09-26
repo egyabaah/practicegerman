@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { LabeledTextarea } from "../io/LabeledTextarea";
 
@@ -14,7 +14,7 @@ interface PracticeInputFormProps {
 
 
 
-export const PracticeInputForm: FC<PracticeInputFormProps> = ({
+export const PracticeInputForm = ({
     targetSentence,
     nativeSentence,
     loading,
@@ -22,7 +22,7 @@ export const PracticeInputForm: FC<PracticeInputFormProps> = ({
     onTargetSentenceChange,
     onNativeSentenceChange,
     onSubmit
-}) => {
+}: PracticeInputFormProps) => {
     return (
         <form 
             onSubmit={onSubmit} 

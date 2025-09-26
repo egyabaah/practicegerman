@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import { LabeledTextarea } from "@/components/features/io/LabeledTextarea";
 import { describe, it, expect, vi } from "vitest";
@@ -32,7 +32,7 @@ describe("LabeledTextarea", () => {
 
   it("calls onChange", async() => {
     const user = userEvent.setup();
-    const handleChange = vi.fn((e: React.ChangeEvent<HTMLTextAreaElement>) => {});
+    const handleChange = vi.fn(() => {});
     render(
       <LabeledTextarea
         label="German Sentence"

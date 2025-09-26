@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { BookOpen, Brain, Trophy, Users } from "lucide-react";
+import { BookOpen, Brain, Trophy } from "lucide-react";
 import { FeatureItem } from "@/components/features/FeatureItem";
 import Image from "next/image";
 import { FeatureCard } from "@/components/features/FeatureCard";

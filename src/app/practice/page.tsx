@@ -38,11 +38,11 @@ export default function PracticePage() {
         }, 200)
     }
     
-    const handleReset = () => {
-        setTargetSentence("");
-        setNativeSentence("");
-        setResult(null);
-    }
+    // const handleReset = () => {
+    //     setTargetSentence("");
+    //     setNativeSentence("");
+    //     setFeedback(null);
+    // }
     
     const handleTargetSentenceChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTargetSentence(e.target.value);
