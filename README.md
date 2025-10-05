@@ -28,7 +28,7 @@ We noticed that many learners finish structured courses but still struggle to co
    ```
 2. Create .env.local
 3. Get an API Key from openai
-4. Add your API Key as in the environment variable:
+4. Add your API Key to .env.local as:
    ```
    OPENAI_API_KEY=your_api_key_here
    ```
@@ -44,17 +44,16 @@ pnpm dev
 bun dev
 ```
 
-
 ## Implemented
 
 * [X] Homepage
 * [X] Sentence practice
 * [X] Backend supports multiple languages and can teach in multiple languages
 * [X] Feedback tuned for A1 users
+* [X] Extend UI to support multiple languages and dynamic language levels
 
 ## TODO
 
-* [ ] Extend UI to support multiple languages and dynamic language levels
 * [ ] Add unimplemented pages such as: about, contact, privacy, terms
 * [ ] Replace hardcoded strings with i18n
 * [ ] Add Authentication
