@@ -1,3 +1,5 @@
+import { LanguageCode } from "@/enums/language-codes";
+import { LanguageLevel } from "@/enums/language-levels";
 import z from "zod";
 
 /**
@@ -9,21 +11,19 @@ export type TPracticeRequest = {
 
     /** 
      * Optional: the learner's intended meaning in their native language
-     * TODO: Convert to BCR-47 codes
      */
     learnerSentenceNativeMeaning?: string;
 
     /**
-     *  The language the learner is trying to practice (e.g., "Deutsch") 
-     *  TODO: Convert to BCR-47 codes
+     *  The BCR-47 code of the language the learner is trying to practice (e.g., "de") 
      */
-    targetLanguage: string;
+    targetLanguage: LanguageCode;
 
-    /** Learner's proficiency level (e.g., "A1", "B2") */
-    userLanguageLevel: string;
+    /** Learner's CEFR proficiency level (e.g., "A1", "B2") */
+    userLanguageLevel: LanguageLevel;
 
-    /** Learner's native language (for explanations) */
-    userNativeLanguage: string;
+    /** The BCR-47 code of learner's native language (used for explanations) */
+    userNativeLanguage: LanguageCode;
 };
 
 /** Verb conjugation for a single pronoun */
