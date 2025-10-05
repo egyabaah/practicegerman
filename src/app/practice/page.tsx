@@ -1,17 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { PracticeInputForm } from "@/components/features/practice/PracticeInputForm";
 import { FeedbackCard } from "@/components/features/practice/FeedbackCard";
 import { TPracticeFeedbackResult, TPracticeResponse } from "@/types/types";
+import { LanguageCode } from "@/enums/language-codes";
+import { LanguageLevel } from "@/enums/language-levels";
 
 
 export default function PracticePage() {
     // States
     const [targetSentence, setTargetSentence] = useState("");
     const [nativeSentence, setNativeSentence] = useState("");
+    const [targetLanguage, setTargetLanguage] = useState<LanguageCode>(LanguageCode.DE);
+    const [userNativeLanguage, setUserNativeLanguage] = useState<LanguageCode>(LanguageCode.EN);
+    const [userLanguageLevel, setUserLanguageLevel] = useState<LanguageLevel>(LanguageLevel.A1);
     const [loading, setLoading] = useState(false);
     const [targetSentenceError, setTargetSentenceError] = useState<string | null>(null);
     const [feedback, setFeedback] = useState<TPracticeResponse | string | null>(null);
@@ -36,10 +41,9 @@ export default function PracticePage() {
                 body: JSON.stringify({
                     targetSentence: targetSentence,
                     nativeSentence: nativeSentence,
-                    // TODO: Replace with useState
-                    targetLanguage: "Deutsch",
-                    userLanguageLevel: "A1",
-                    userNativeLanguage: "English",
+                    targetLanguage: targetLanguage,
+                    userLanguageLevel: userLanguageLevel,
+                    userNativeLanguage: userNativeLanguage,
                 }),
             });
             // console.log(response)
@@ -82,6 +86,15 @@ export default function PracticePage() {
     const handleNativeSentenceChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setNativeSentence(e.target.value);
     }
+    const handleTargetLanguageChange = (value: LanguageCode) => {
+        setTargetLanguage(value);
+    }
+    const handleUserNativeLanguageChange = (value: LanguageCode) => {
+        setUserNativeLanguage(value);
+    }
+    const handleUserLanguageLevelChange = (value: LanguageLevel) => {
+        setUserLanguageLevel(value);
+    }
 
     return (
         <div className="w-full px-4 py-6">
@@ -100,6 +113,12 @@ export default function PracticePage() {
                         targetSentenceError={targetSentenceError || undefined}
                         onTargetSentenceChange={handleTargetSentenceChange}
                         onNativeSentenceChange={handleNativeSentenceChange}
+                        targetLanguage={targetLanguage}
+                        userNativeLanguage={userNativeLanguage}
+                        userLanguageLevel={userLanguageLevel}
+                        onTargetLanguageChange={handleTargetLanguageChange}
+                        onUserNativeLanguageChange={handleUserNativeLanguageChange}
+                        onUserLanguageLevelChange={handleUserLanguageLevelChange}
                         onSubmit={handleSubmit}
                     />
                     {/* Right side: feedback */}

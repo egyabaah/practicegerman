@@ -7,6 +7,7 @@ import {
     VocabularyItem, 
     VocabularyTable 
 } from "@/app/api/practice/v1/generatePracticeFeedback/types";
+import { LanguageCode, TextDirection } from "@/enums/language-codes";
 
 /** Verb conjugation for a single pronoun */
 export type TVerbConjugationItem = z.infer<typeof VerbConjugationItem>;
@@ -69,3 +70,9 @@ export type TClientPracticeRequest = {
     userNativeLanguage: string;
 };
 
+export type TLearnerLanguageMetadata = {
+    code: LanguageCode;
+    displayName: string;
+    nativeName: string;
+    direction: TextDirection;
+};
