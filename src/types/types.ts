@@ -8,6 +8,7 @@ import {
     VocabularyTable 
 } from "@/app/api/practice/v1/generatePracticeFeedback/types";
 import { LanguageCode, TextDirection } from "@/enums/language-codes";
+import { LanguageLevel } from "@/enums/language-levels";
 
 /** Verb conjugation for a single pronoun */
 export type TVerbConjugationItem = z.infer<typeof VerbConjugationItem>;
@@ -56,18 +57,16 @@ export type TClientPracticeRequest = {
 
     /**
      * The language the learner is trying to practice (e.g., "Deutsch").
-     * TODO: Convert to BCP-47 codes
      */
-    targetLanguage: string;
+    targetLanguage: LanguageCode;
 
     /** Learner's proficiency level (e.g., "A1", "B2") */
-    userLanguageLevel: string;
+    userLanguageLevel: LanguageLevel;
 
     /** 
      * Learner's native language
-     * TODO: Convert to BCP-47 codes
      */
-    userNativeLanguage: string;
+    userNativeLanguage: LanguageCode;
 };
 
 export type TLearnerLanguageMetadata = {
