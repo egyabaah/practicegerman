@@ -15,6 +15,8 @@ interface LabeledTextareaProps {
     name?: string;
     required?: boolean;
     testId?: string;
+    /** Optional aria-label for stable test queries/accessibility */
+    ariaLabel?: string;
 }
 
 export function LabeledTextarea({
@@ -28,7 +30,8 @@ export function LabeledTextarea({
     id,
     name,
     required,
-    testId
+    testId,
+    ariaLabel
 }: LabeledTextareaProps) {
     return (
         <div className="flex flex-col gap-1">
@@ -42,6 +45,7 @@ export function LabeledTextarea({
                 name={name}
                 required={required}
                 data-testid={testId}
+                aria-label={ariaLabel}
             />
             {helperText && !error && (
                 <span className="text-sm text-gray-500">{helperText}</span>

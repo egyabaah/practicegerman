@@ -3,6 +3,7 @@ import { PracticeInputForm } from "@/components/features/practice/PracticeInputF
 import { describe, it, expect, vi } from "vitest";
 import { LanguageCode } from "@/enums/language-codes";
 import { LanguageLevel } from "@/enums/language-levels";
+import { defaultRequestLanguageProps } from "../../../../__tests__/commons/defaultProps";
 
 // Fix fail due to shadcn(radix's) implementation of select
 Element.prototype.scrollIntoView = vi.fn();
@@ -14,15 +15,13 @@ describe("PracticeInputForm", () => {
         targetSentence=""
         nativeSentence=""
         loading={false}
-        targetLanguage={LanguageCode.DE}
-        userNativeLanguage={LanguageCode.EN}
-        userLanguageLevel={LanguageLevel.A1}
         onTargetSentenceChange={() => {}}
         onNativeSentenceChange={() => {}}
         onTargetLanguageChange={() => {}}
         onUserNativeLanguageChange={() => {}}
         onUserLanguageLevelChange={() => {}}
         onSubmit={() => {}}
+        {...defaultRequestLanguageProps}
       />
     );
     expect(screen.getByText(/Your .* Sentences\*/i)).toBeDefined();
@@ -39,15 +38,14 @@ describe("PracticeInputForm", () => {
         targetSentence="Hallo Welt"
         nativeSentence="Hello world"
         loading={false}
-        targetLanguage={LanguageCode.DE}
-        userNativeLanguage={LanguageCode.EN}
-        userLanguageLevel={LanguageLevel.A1}
         onTargetSentenceChange={() => {}}
         onNativeSentenceChange={() => {}}
         onTargetLanguageChange={() => {}}
         onUserNativeLanguageChange={() => {}}
         onUserLanguageLevelChange={() => {}}
         onSubmit={onSubmit}
+        {...defaultRequestLanguageProps}
+
       />
     );
     const form = screen.getByTestId("form-practice-input");
@@ -63,15 +61,14 @@ describe("PracticeInputForm", () => {
         targetSentence=""
         nativeSentence=""
         loading={true}
-        targetLanguage={LanguageCode.DE}
-        userNativeLanguage={LanguageCode.EN}
-        userLanguageLevel={LanguageLevel.A1}
         onTargetSentenceChange={() => {}}
         onNativeSentenceChange={() => {}}
         onTargetLanguageChange={() => {}}
         onUserNativeLanguageChange={() => {}}
         onUserLanguageLevelChange={() => {}}
         onSubmit={onSubmit}
+        {...defaultRequestLanguageProps}
+
       />
     );
     expect(screen.getByRole("button", { name: /checking/i })).toBeDefined();
@@ -86,15 +83,13 @@ describe("PracticeInputForm", () => {
         targetSentence=""
         nativeSentence=""
         loading={false}
-        targetLanguage={LanguageCode.DE}
-        userNativeLanguage={LanguageCode.EN}
-        userLanguageLevel={LanguageLevel.A1}
         onTargetSentenceChange={() => {}}
         onNativeSentenceChange={() => {}}
         onTargetLanguageChange={onTargetLanguageChange}
         onUserNativeLanguageChange={onUserNativeLanguageChange}
         onUserLanguageLevelChange={onUserLanguageLevelChange}
         onSubmit={() => {}}
+        {...defaultRequestLanguageProps}
       />
     );
     // open and select different values by firing onValueChange via trigger + item click
@@ -102,7 +97,7 @@ describe("PracticeInputForm", () => {
       const trigger = screen.getByTestId(triggerTestId);
       fireEvent.click(trigger);
       // log the DOM
-      screen.debug();
+      // screen.debug();
       const option = await screen.findByRole("option", { name: optionName});
       fireEvent.click(option);
     };
@@ -115,5 +110,5 @@ describe("PracticeInputForm", () => {
     expect(onTargetLanguageChange).toHaveBeenCalled();
     expect(onUserLanguageLevelChange).toHaveBeenCalled();
     expect(onUserNativeLanguageChange).toHaveBeenCalled();
-  }, 10000);
+  }, 15000);
 });

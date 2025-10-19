@@ -8,15 +8,16 @@ import { FeedbackCard } from "@/components/features/practice/FeedbackCard";
 import { TPracticeFeedbackResult, TPracticeResponse } from "@/types/types";
 import { LanguageCode } from "@/enums/language-codes";
 import { LanguageLevel } from "@/enums/language-levels";
+import { DEFAULT_LANGUAGE_LEVEL, DEFAULT_NATIVE_LANGUAGE, DEFAULT_TARGET_LANGUAGE } from "@/constants/general";
 
 
 export default function PracticePage() {
     // States
     const [targetSentence, setTargetSentence] = useState("");
     const [nativeSentence, setNativeSentence] = useState("");
-    const [targetLanguage, setTargetLanguage] = useState<LanguageCode>(LanguageCode.DE);
-    const [userNativeLanguage, setUserNativeLanguage] = useState<LanguageCode>(LanguageCode.EN);
-    const [userLanguageLevel, setUserLanguageLevel] = useState<LanguageLevel>(LanguageLevel.A1);
+    const [targetLanguage, setTargetLanguage] = useState<LanguageCode>(DEFAULT_TARGET_LANGUAGE);
+    const [userNativeLanguage, setUserNativeLanguage] = useState<LanguageCode>(DEFAULT_NATIVE_LANGUAGE);
+    const [userLanguageLevel, setUserLanguageLevel] = useState<LanguageLevel>(DEFAULT_LANGUAGE_LEVEL);
     const [loading, setLoading] = useState(false);
     const [targetSentenceError, setTargetSentenceError] = useState<string | null>(null);
     const [feedback, setFeedback] = useState<TPracticeResponse | string | null>(null);
