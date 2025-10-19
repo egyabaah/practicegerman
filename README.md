@@ -51,6 +51,7 @@ bun dev
 * [X] Backend supports multiple languages and can teach in multiple languages
 * [X] Feedback tuned for A1 users
 * [X] Extend UI to support multiple languages and dynamic language levels
+* [X] Add audio playback and word highlighting to practice feedback
 
 ## TODO
 
