@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { TPracticeResponse } from "@/types/types";
 import { ConjugationTable } from "./atoms/ConjugationTable";
 import { isUserPracticeSentenceCorrect } from "@/utils/feedback";
+import FeedbackSection from "./atoms/FeedbackSection";
 
 interface FeedbackCardProps {
     /**
@@ -34,52 +35,58 @@ export const FeedbackCard = ({ feedback }: FeedbackCardProps) => {
 
     return (
         <Card className="flex-1 p-4 bg-muted space-y-4 w-full min-h-[200px]">
-            {/** TODO: Extract sections into reusable code */}
             {feedback.corrected_sentences && (
-                <section>
-                    <h3 className="font-semibold">✅ Corrected Sentence</h3>
+                <FeedbackSection 
+                    title="Corrected Sentence" 
+                    icon="✅"
+                    enableAudio={true}
+                >
                     <p>{feedback.corrected_sentences}</p>
                     {isUserSentenceCorrect && (
-                    <p className="text-primary font-semibold">
-                        No corrections needed🎉!
-                    </p>
+                        <p className="text-primary font-semibold">
+                            No corrections needed🎉!
+                        </p>
                     )}
-                </section>
+                </FeedbackSection>
             )}
 
             {feedback.native_way_of_saying_it && (
-                <section>
-                    <h3 className="font-semibold">🗣 Native Way of Saying It</h3>
+                <FeedbackSection 
+                    title="Native Way of Saying It" 
+                    icon="🗣"
+                    enableAudio={true}
+                >
                     <p>{feedback.native_way_of_saying_it}</p>
-                </section>
+                </FeedbackSection>
             )}
 
             {feedback.explanation_of_error && (
-                <section>
-                    <h3 className="font-semibold">⚠️ Explanation of Error</h3>
+                <FeedbackSection title="Explanation of Error" icon="⚠️">
                     <p>{feedback.explanation_of_error}</p>
-                </section>
+                </FeedbackSection>
             )}
 
             {feedback.vocabulary_and_their_meaning_in_user_language?.length > 0 && (
-                <section>
-                    <h3 className="font-semibold">📖 Vocabulary</h3>
+                <FeedbackSection title="Vocabulary" icon="📖">
                     <ul className="list-disc list-inside">
-                        {feedback.vocabulary_and_their_meaning_in_user_language.map((item, i) => (
-                            <li key={i}>
-                                <strong>{item.word}</strong> — {item.meaning}
-                            </li>
-                        ))}
+                        {feedback.vocabulary_and_their_meaning_in_user_language.map(
+                            (item, i) => (
+                                <li key={i}>
+                                    <strong>{item.word}</strong> — {item.meaning}
+                                </li>
+                            )
+                        )}
                     </ul>
-                </section>
+                </FeedbackSection>
             )}
 
             {feedback.grammar && (
-                <section>
-                    <h3 className="font-semibold">📘 Grammar Notes</h3>
+                <FeedbackSection title="Grammar Notes" icon="📘">
                     <p>{feedback.grammar}</p>
-                </section>
+                </FeedbackSection>
             )}
+
+
 
             {feedback.conjugations?.length > 0 && (
                 <ConjugationTable

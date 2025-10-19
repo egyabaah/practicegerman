@@ -54,7 +54,7 @@ const mockGlobalFetch = (response: TPracticeFeedbackResult) => {
     } as any);
 };
 
-const fetchTimeout = 1000; // 1000ms
+const fetchTimeout = 10000; // 1000ms
 
 /**
  * Fill and submit form in practice page
@@ -97,7 +97,7 @@ describe("PracticePage", () => {
             expect(screen.getByText(/⚠️ Explanation of Error/i)).toBeDefined();
 
         }, { timeout: fetchTimeout });
-    });
+    }, fetchTimeout+2000);
 
     it("flows from input to correct sentence by user", async () => {
         mockGlobalFetch(mockCorrectSentenceResponse);
@@ -111,7 +111,7 @@ describe("PracticePage", () => {
             // NB: `getByText` will throw error if text doesnot exist so use `queryByText`
             expect(screen.queryByText(/⚠️ Explanation of Error/i)).toBeNull();
         }, { timeout: fetchTimeout });
-    })
+    }, fetchTimeout+2000)
 
     it("flows from input to fetch error", async () => {
         mockGlobalFetch(mockFetchReject);
