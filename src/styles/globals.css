@@ -195,4 +195,11 @@
     .dark .text-muted-foreground {
         color: hsl(0, 0%, 70.8%);
     }
+
+    .activeSentence {
+        background-color: var(--background-brand);
+    }
+    .activeWord {
+        background-color: var(--primary);
+    }
 }

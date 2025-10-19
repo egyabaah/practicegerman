@@ -1,6 +1,7 @@
 import { generatePracticeFeedback } from "@/app/api/practice/v1/generatePracticeFeedback/generatePracticeFeedback";
 import { TPracticeRequest } from "@/app/api/practice/v1/generatePracticeFeedback/types";
 import { describe, expect, it, vi } from "vitest";
+import { defaultRequestLanguageProps } from "../../../../../commons/defaultProps";
 
 // https://stackoverflow.com/questions/76836909/referenceerror-cannot-access-mock-before-initialization-when-using-vitest
 // Use hoist instead of ts variables to ensure they are always initialized before mocking
@@ -30,6 +31,8 @@ const { vocabs, conjugations } = vi.hoisted(() => {
 })
 
 
+
+
 // Mock OpenAI
 vi.mock("openai", async (importOriginal) => {
     const actual = await importOriginal<typeof import("openai")>();
@@ -43,8 +46,8 @@ vi.mock("openai", async (importOriginal) => {
                             {
                                 message: {
                                     parsed: {
-                                        corrected_sentences: "Ich gehe zur Schule. Ich bin Manuel.",
-                                        native_way_of_saying_it: "Ich gehe in die Schule. Ich bin Manuel.",
+                                        corrected_sentences: "Ich bin Manuel. Ich gehe zur Schule.",
+                                        native_way_of_saying_it: "Ich bin Manuel. Ich gehe in die Schule. ",
                                         explanation_of_error: "The verb 'geht' should be 'gehe' for 'ich'.",
                                         vocabulary_and_their_meaning_in_user_language: vocabs,
                                         grammar: "Verbs must match the subject pronoun.",
@@ -65,9 +68,7 @@ describe("generatePracticeFeedback", () => {
         const request: TPracticeRequest = {
             learnerSentence: "Ich geht zur schule. Ich bin Manuel.",
             learnerSentenceNativeMeaning: "I am Manuel and I am going to school",
-            targetLanguage: "Deutsch",
-            userLanguageLevel: "A1",
-            userNativeLanguage: "English",
+            ...defaultRequestLanguageProps,
         };
 
         const { data: apiResponse, error: apiError } = await generatePracticeFeedback(request);
@@ -75,7 +76,7 @@ describe("generatePracticeFeedback", () => {
         if (apiResponse) {
             expect(apiError).toBeNull();
             expect(apiResponse).toBeDefined();
-            expect(apiResponse.corrected_sentences).toBe("Ich gehe zur Schule. Ich bin Manuel.");
+            expect(apiResponse.corrected_sentences).toBe("Ich bin Manuel. Ich gehe zur Schule.");
             expect(apiResponse.conjugations[0].verb).toBe("gehen"); // check the verb name
             expect(apiResponse.conjugations[0].conjugation[0].form).toBe("gehe"); // check the first form: for ich
             expect(apiResponse.explanation_of_error).toMatch(/verb/i);
@@ -87,9 +88,7 @@ describe("generatePracticeFeedback", () => {
         
         const request: TPracticeRequest = {
             learnerSentence: "Ich geht zur schule.",
-            targetLanguage: "Deutsch",
-            userLanguageLevel: "A1",
-            userNativeLanguage: "English",
+            ...defaultRequestLanguageProps,
         };
 
         // Should hit the `.mockRejectedValueOnce`
